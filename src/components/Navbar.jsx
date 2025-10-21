@@ -1,6 +1,6 @@
 
 
-import "./Navbar.css"
+import "./NavBar.css"
 
 // As a user, I want to navigate between Home, Movies, TV Series, and Bookmarked Shows so that I can easily access different types of content.
 

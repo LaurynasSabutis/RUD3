@@ -11,3 +11,12 @@ body{
     margin-left: 100px;
     margin-top: 25px;
 }
+.swiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  width: auto !important;
+  display: flex;
+  justify-content: center;
+}
