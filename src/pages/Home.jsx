@@ -1,9 +1,10 @@
 
 import React from 'react'
+import MovieCarousel from "../components/MovieCarousel";
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className="bg-[#10141E] text-white min-h-screen p-6"> <MovieCarousel /> </div>
   )
 }
 
