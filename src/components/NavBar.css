@@ -1,0 +1,54 @@
+/* Navbar styling */
+
+.nav-container{
+    background-color: #161D2F;
+    width: 75px;
+    height: 660px;
+    border-radius: 15px;
+    position: fixed;
+
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px
+}
+
+nav > ul {
+    list-style: none;
+    gap: 18px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+li{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.nav-items{
+margin-top: 2rem;
+height: 60%; 
+}
+
+
+
+.nav-profile{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 100%;
+}
+
+li > a{
+    cursor: pointer;
+    text-decoration: none;
+}
