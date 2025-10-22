@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import SearchInputForBookmarkedPage from '../components/SearchInputForBookmarkedPage';
+import SearchInputForBookmarkedPage from '../../components/SearchInputForBookmarkedPage';
 import "./Bookmarks.css"
 
 const Bookmarks = () => {

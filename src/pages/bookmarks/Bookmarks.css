@@ -11,12 +11,28 @@ p{
     margin: 0;
 }
 
-.grid-cards{
+.grid-cards {
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  padding: 10px;
-  row-gap: 25px;
-  column-gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 16px 10px;
+}
+
+@media (min-width: 640px) {
+  .grid-cards {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
 }
 
 .divider{

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +10,7 @@
 body{
     background-color: #10141E;
     color: #FFFFFF;
+    font-family: "Google Sans", "Helvetica Neue", Arial, sans-serif;
 }
 .root-body{
     margin-left: 100px;
@@ -30,13 +32,13 @@ body{
   height: 200px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .movie-slide:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
 }
 
 .movie-slide__image {
@@ -51,7 +53,6 @@ body{
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(16, 20, 30, 0.85) 100%);
   z-index: 1;
-  pointer-events: none;
 }
 
 .movie-slide__info {
@@ -60,30 +61,30 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 20px;
+  padding: 24px;
   color: #ffffff;
   z-index: 2;
-  pointer-events: none;
+  gap: 6px;
 }
 
 .movie-slide__meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .movie-slide__meta img {
   width: 12px;
   height: 12px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .movie-slide__category {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .movie-slide__divider {
@@ -91,38 +92,33 @@ body{
 }
 
 .movie-slide__title {
-  margin-top: 8px;
   font-size: 18px;
   font-weight: 600;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 .movie-slide__bookmark {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 3;
-  transition: background-color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .movie-slide__bookmark:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .movie-slide__bookmark img {
   width: 16px;
   height: 16px;
-}
-
-.swiper-button-prev {
-  opacity: 0 !important;
-  pointer-events: none;
 }
