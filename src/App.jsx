@@ -2,6 +2,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import Bookmarks from "./pages/Bookmarks"
+import Movies from "./pages/Movies"
+import TVSeries from "./pages/TVSeries"
 
 
 function App() {
@@ -10,6 +12,14 @@ function App() {
     {
       path: "/",
       element:<Home/>
+    },
+    {
+      path: "/movies",
+      element:<Movies/>
+    },
+    {
+      path: "/tv_series",
+      element:<TVSeries/>
     },
     {
       path: "/bookmarked_items",
