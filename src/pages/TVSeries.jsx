@@ -1,5 +1,5 @@
 import React from 'react'
-import TVSerie from "../components/TVSeries";
+import TVSerie from "../components/tvseries/TVSeries";
 
 const TVSeries = () => {
   return (

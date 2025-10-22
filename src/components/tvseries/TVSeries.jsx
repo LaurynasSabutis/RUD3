@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./TVSeries.css";
+import "../movies/Movies.css";
 
 export default function TVSeries() {
   const [series, setSeries] = useState([]);

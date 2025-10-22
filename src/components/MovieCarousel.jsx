@@ -43,9 +43,9 @@ export default function MovieCarousel() {
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          loop
+          loop={true}
           spaceBetween={20}
-          slidesPerView={3}
+          slidesPerView={4}
           grabCursor
           className="!w-full drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]"
           breakpoints={{
