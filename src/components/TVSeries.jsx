@@ -62,8 +62,12 @@ export default function TVSeries() {
                   <div className="image-wrapper">
                     <img src={image} alt={s.title} className="movie-image" />
                     <button
-                      className="bookmark-icon"
+                      type="button"
+                      className="bookmark-button"
                       onClick={() => toggleBookmark(s.title)}
+                      aria-label={`${
+                        s.isBookmarked ? "Remove from" : "Add to"
+                      } bookmarks`}
                     >
                       <img
                         src={

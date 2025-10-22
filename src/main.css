@@ -26,6 +26,33 @@ body{
   justify-content: center;
 }
 
+.bookmark-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  padding: 0;
+}
+
+.bookmark-button:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.bookmark-button img {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
 .movie-slide {
   position: relative;
   width: 350px;
@@ -102,23 +129,10 @@ body{
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   z-index: 3;
-  transition: background 0.2s ease;
-}
-
-.movie-slide__bookmark:hover {
-  background: rgba(255, 255, 255, 0.85);
 }
 
 .movie-slide__bookmark img {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }

@@ -15,6 +15,16 @@ const RecommendedGrid = () => {
     fetchMovies();
   }, []);
 
+  const toggleBookmark = (title) => {
+    setRecommendedMovies((prev) =>
+      prev.map((movie) =>
+        movie.title === title
+          ? { ...movie, isBookmarked: !movie.isBookmarked }
+          : movie
+      )
+    );
+  };
+
   return (
     <>
       <h1 style={{ marginBottom: "2rem" }}>Recommended for you</h1>
@@ -36,10 +46,15 @@ const RecommendedGrid = () => {
                     onError={(e) => (e.target.src = "https://picsum.photos/400/250")}
                   />
                   {/* ✅ Bookmark icon */}
-                  <div className="bookmark-icon">
+                  <button
+                    type="button"
+                    className="bookmark-button"
+                    onClick={() => toggleBookmark(movie.title)}
+                    aria-label={`${
+                      movie.isBookmarked ? "Remove from" : "Add to"
+                    } bookmarks`}
+                  >
                     <img
-                      width={15}
-                      height={15}
                       src={
                         movie.isBookmarked
                           ? "/assets/icon-bookmark-full.svg"
@@ -47,7 +62,7 @@ const RecommendedGrid = () => {
                       }
                       alt="Bookmark icon"
                     />
-                  </div>
+                  </button>
                 </div>
 
                 {/* ✅ Info line */}

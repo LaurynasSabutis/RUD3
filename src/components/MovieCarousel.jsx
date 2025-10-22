@@ -99,9 +99,12 @@ export default function MovieCarousel() {
 
                   {/* Bookmark icon */}
                   <button
+                    type="button"
                     onClick={() => toggleBookmark(movie.title)}
-                    className="movie-slide__bookmark"
-                    style={{ border: "none" }}
+                    className="bookmark-button movie-slide__bookmark"
+                    aria-label={`${
+                      movie.isBookmarked ? "Remove from" : "Add to"
+                    } bookmarks`}
                   >
                     <img
                       src={
