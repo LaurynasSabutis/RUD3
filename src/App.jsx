@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
+import Movies from "./pages/Movies"
+import TVSeries from "./pages/TVSeries"
 
 
 function App() {
@@ -11,8 +13,12 @@ function App() {
       element:<Home/>
     },
     {
-      path: "*",
-      element:<NotFound/>
+      path: "/movies",
+      element:<Movies/>
+    },
+    {
+      path: "/tv_series",
+      element:<TVSeries/>
     }
   ])
 
