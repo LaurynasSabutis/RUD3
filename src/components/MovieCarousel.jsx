@@ -8,7 +8,7 @@ export default function MovieCarousel() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch("http://localhost:3000/posts")
       .then((res) => res.json())
       .then((data) => {
         const trending = data.filter((movie) => movie.isTrending);

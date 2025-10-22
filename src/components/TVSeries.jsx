@@ -5,7 +5,7 @@ export default function TVSeries() {
   const [TVSeries, setTVSeries] = useState([]);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch("http://localhost:3000/posts")
       .then((res) => res.json())
       .then((data) => {
         const onlyTVSeries = data.filter((item) => item.category === "TV Series");

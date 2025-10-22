@@ -1,26 +1,48 @@
 import React, { useEffect, useState } from 'react'
-import SearchInputForBookmarkedPage from '../components/SearchInputForBookmarkedPage';
 import "./Bookmarks.css"
+import "./input.css"
+
 
 const Bookmarks = () => {
     const [bookmarkedMovies, setBookmarkedMovies] = useState([]);
-    
+    const [searchBookmarks, setSearchBookmarks] = useState()
 
 
 
     useEffect(() => {
         const fetchMovies = async () => {
-            const res = await fetch("/data.json")
+            const res = await fetch("http://localhost:3000/posts")
             const json = await res.json()
             setBookmarkedMovies(json)
         }
         fetchMovies()
     }, [])
-    // 
+    const handleSearch = async (e) => {
+        e.preventDefault()
+        const search = await fetch(`http://localhost:3000/posts?title=a`,{
+            method: "GET",
+            "content-type": "application/json"
+
+        })
+        
+        const json = await search.json()
+        console.log(json)
+
+    
+    } 
 
   return (
             <>
-                <SearchInputForBookmarkedPage/>
+            <form onSubmit={handleSearch}>
+ <div className='input-container'>
+    <button>
+        <img src='/assets/icon-search.svg' alt='icon'></img>
+
+    </button>
+        <input onChange={(e) => setSearchBookmarks(e.target.value)} value={searchBookmarks} name='bookmarked_shows_search' type='text' placeholder='Search for bookmarked shows' autoComplete='off' maxLength={64}/>
+    </div>
+            </form>
+               
                 <h1 style={{marginBottom: "2rem"}}>Bookmarked movies</h1>
                 <section>
         <div className='container-of-movies'>

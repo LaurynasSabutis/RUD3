@@ -1,4 +1,4 @@
-[
+{ "posts": [
   {
     "title": "Beyond Earth",
     "thumbnail": {
@@ -454,4 +454,4 @@
     "isBookmarked": true,
     "isTrending": false
   }
-]
+]}

@@ -5,7 +5,7 @@ export default function Movies() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch("http://localhost:3000/posts")
       .then((res) => res.json())
       .then((data) => {
         // Filter only movies
@@ -55,6 +55,8 @@ export default function Movies() {
                         : "/assets/icon-bookmark-empty.svg"
                     }
                     alt="bookmark"
+                    width={15} 
+                  height={15}
                   />
                 </button>
               </div>
