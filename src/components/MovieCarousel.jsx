@@ -12,7 +12,8 @@ export default function MovieCarousel() {
     fetch("/data.json")
       .then((res) => res.json())
       .then((data) => {
-        const trending = data.filter((movie) => movie.isTrending);
+        const movies = Array.isArray(data) ? data : data.movies || [];
+        const trending = movies.filter((movie) => movie.isTrending);
         setTrendingMovies(trending);
       })
       .catch((err) => console.error("Error loading movies:", err));

@@ -8,8 +8,9 @@ const RecommendedGrid = () => {
     const fetchMovies = async () => {
       const res = await fetch("/data.json");
       const json = await res.json();
+      const movies = Array.isArray(json) ? json : json.movies || [];
       // only non-trending movies (the “recommended” ones)
-      const recommended = json.filter((movie) => !movie.isTrending);
+      const recommended = movies.filter((movie) => !movie.isTrending);
       setRecommendedMovies(recommended);
     };
     fetchMovies();
