@@ -25,7 +25,6 @@ export default function Movies() {
     );
   };
 
-  // Filter movies by search query
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -34,7 +33,6 @@ export default function Movies() {
     <div className="movies-container">
       <h1>All Movies</h1>
 
-      {/* Search bar */}
       <div className="search-bar">
         <img src="/assets/icon-search.svg" alt="search" className="search-icon" />
         <input
@@ -46,7 +44,6 @@ export default function Movies() {
         />
       </div>
 
-      {/* Movie grid */}
       {movies.length === 0 ? (
         <p className="loading">Loading movies...</p>
       ) : (
