@@ -27,7 +27,7 @@ const Navbar = () => {
 
               </li>
               <li>
-                                <a href='/bookmark'><img src='/assets/icon-nav-bookmark.svg'></img></a>
+                                <a href='/bookmarked_items'><img src='/assets/icon-nav-bookmark.svg'></img></a>
 
               </li>
             </ul>
