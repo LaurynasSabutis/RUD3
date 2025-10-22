@@ -63,8 +63,12 @@ export default function Movies() {
                   <div className="image-wrapper">
                     <img src={image} alt={movie.title} className="movie-image" />
                     <button
-                      className="bookmark-icon"
+                      type="button"
+                      className="bookmark-button"
                       onClick={() => toggleBookmark(movie.title)}
+                      aria-label={`${
+                        movie.isBookmarked ? "Remove from" : "Add to"
+                      } bookmarks`}
                     >
                       <img
                         src={
