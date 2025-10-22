@@ -1,10 +1,23 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
   const [formValues, setFormValues] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const [users, setUsers] = useState([]);
+  const [authError, setAuthError] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const usersData = !Array.isArray(data) && Array.isArray(data.users) ? data.users : [];
+        setUsers(usersData);
+      })
+      .catch((err) => console.error("Error loading users:", err));
+  }, []);
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -27,8 +40,18 @@ const Login = () => {
       return;
     }
 
-    // TODO: replace with real auth flow
-    console.log("Logging in with:", formValues);
+    const email = formValues.email.trim();
+    const password = formValues.password.trim();
+    const user = users.find((u) => u.email === email);
+
+    if (!user || user.password !== password) {
+      setAuthError("Invalid email or password");
+      return;
+    }
+
+    setAuthError("");
+    console.log("Logged in as", email);
+    navigate("/");
   };
 
   return (
@@ -83,6 +106,8 @@ const Login = () => {
             Login to your account
           </button>
         </form>
+
+        {authError && <p className="login-error" style={{ textAlign: "center" }}>{authError}</p>}
 
         <p className="login-footer">
           Don&apos;t have an account?{" "}

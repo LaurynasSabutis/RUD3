@@ -9,7 +9,8 @@ export default function TVSeries() {
     fetch("/data.json")
       .then((res) => res.json())
       .then((data) => {
-        const onlySeries = data.filter((item) => item.category === "TV Series");
+        const seriesData = Array.isArray(data) ? data : data.movies || [];
+        const onlySeries = seriesData.filter((item) => item.category === "TV Series");
         setSeries(onlySeries);
       })
       .catch((err) => console.error("Error loading TV series:", err));

@@ -9,7 +9,8 @@ export default function Movies() {
     fetch("/data.json")
       .then((res) => res.json())
       .then((data) => {
-        const onlyMovies = data.filter((item) => item.category === "Movie");
+        const moviesData = Array.isArray(data) ? data : data.movies || [];
+        const onlyMovies = moviesData.filter((item) => item.category === "Movie");
         setMovies(onlyMovies);
       })
       .catch((err) => console.error("Error loading movies:", err));

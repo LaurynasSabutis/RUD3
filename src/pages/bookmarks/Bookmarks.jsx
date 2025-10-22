@@ -9,7 +9,8 @@ const Bookmarks = () => {
     const fetchMovies = async () => {
       const res = await fetch("/data.json");
       const json = await res.json();
-      setBookmarkedItems(json);
+      const movies = Array.isArray(json) ? json : json.movies || [];
+      setBookmarkedItems(movies);
     };
     fetchMovies();
   }, []);
@@ -108,4 +109,3 @@ const Bookmarks = () => {
 };
 
 export default Bookmarks;
-
