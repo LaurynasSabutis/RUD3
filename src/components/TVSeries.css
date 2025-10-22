@@ -10,33 +10,65 @@
   box-sizing: border-box;
 }
 
+
 .TVSeries-container h1 {
   font-size: 2rem;
   margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: rgba(50, 50, 50, 0.5);
+  padding: 6px 10px;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #ccc;
 }
 
 .TVSeries-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  min-height: 500px;
 }
 
 @media (max-width: 1024px) {
-  .TVSeries-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.TVSeries-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
 }
 
 @media (max-width: 768px) {
-  .TVSeries-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.TVSeries-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
 }
 
 @media (max-width: 480px) {
-  .TVSeries-grid {
-    grid-template-columns: 1fr;
-  }
+.TVSeries-grid {
+  grid-template-columns: 1fr;
+}
 }
 
 .TVSerie-card {
@@ -48,7 +80,7 @@
 .image-wrapper {
   position: relative;
   width: 100%;
-  height: 200px;  /* fixed height */
+  height: 200px;
 }
 
 .TVSerie-image {
@@ -77,8 +109,7 @@
   height: 20px;
 }
 
-/* TVSerie info */
-.TVSerie-info {
+  .TVSerie-info {
   margin-top: 8px;
 }
 
@@ -94,4 +125,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #aaa;
+  margin-top: 20px;
+}
+
+
+.loading {
+  text-align: center;
+  color: #aaa;
+  margin-top: 50px;
 }
