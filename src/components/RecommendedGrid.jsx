@@ -8,7 +8,7 @@ const RecommendedGrid = () => {
     const fetchMovies = async () => {
       const res = await fetch("/data.json");
       const json = await res.json();
-      // ✅ only non-trending movies (the “recommended” ones)
+      // only non-trending movies (the “recommended” ones)
       const recommended = json.filter((movie) => !movie.isTrending);
       setRecommendedMovies(recommended);
     };
@@ -33,7 +33,7 @@ const RecommendedGrid = () => {
           <div className="grid-cards">
             {recommendedMovies.map((movie, i) => (
               <div key={i} className="card">
-                {/* ✅ Thumbnail */}
+                {/* Thumbnail */}
                 <div className="image-container">
                   <img
                     className="thumbnail"
@@ -45,7 +45,7 @@ const RecommendedGrid = () => {
                     alt={movie.title}
                     onError={(e) => (e.target.src = "https://picsum.photos/400/250")}
                   />
-                  {/* ✅ Bookmark icon */}
+                  {/* Bookmark icon */}
                   <button
                     type="button"
                     className="bookmark-button"
@@ -65,14 +65,14 @@ const RecommendedGrid = () => {
                   </button>
                 </div>
 
-                {/* ✅ Info line */}
+                {/* Info line */}
                 <div
                   style={{
                     display: "flex",
                     gap: "8px",
                     height: "10px",
                     alignItems: "center",
-                    marginTop: "5px",
+                    marginTop: "15px",
                   }}
                 >
                   <p>{movie.year}</p>
@@ -92,7 +92,7 @@ const RecommendedGrid = () => {
                   <p>{movie.rating}</p>
                 </div>
 
-                {/* ✅ Title */}
+                {/* Title */}
                 <h2 style={{ marginTop: "10px" }}>{movie.title}</h2>
               </div>
             ))}
