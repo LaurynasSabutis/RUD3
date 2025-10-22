@@ -6,9 +6,7 @@ const Home = () => {
   return (
     <div className="bg-[#10141E] text-white min-h-screen px-6 md:px-10 py-8">
       {/* Trending section */}
-      <div className="-mx-6 md:-mx-10">
-        <MovieCarousel />
-      </div>
+      <MovieCarousel />
 
       {/* Recommended section */}
       <RecommendedGrid />

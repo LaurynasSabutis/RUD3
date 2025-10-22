@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../pages/Bookmarks.css"; // reuse same grid styles for consistent layout
+import "../pages/bookmarks/Bookmarks.css"; // reuse same grid styles for consistent layout
 
 const RecommendedGrid = () => {
   const [recommendedMovies, setRecommendedMovies] = useState([]);
