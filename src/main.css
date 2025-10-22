@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +10,7 @@
 body{
     background-color: #10141E;
     color: #FFFFFF;
+    font-family: "Google Sans", "Helvetica Neue", Arial, sans-serif;
 }
 .root-body{
     margin-left: 100px;

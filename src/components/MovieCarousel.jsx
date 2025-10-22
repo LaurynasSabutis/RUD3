@@ -28,11 +28,13 @@ export default function MovieCarousel() {
     );
   };
 
+  const slidesCount = trendingMovies.length;
+
   return (
     <div className="w-full mt-8 overflow-hidden">
       <h2 className="text-2xl font-semibold mb-6 text-white">Trending</h2>
 
-      {trendingMovies.length === 0 ? (
+      {slidesCount === 0 ? (
         <p className="text-gray-400">Loading movies...</p>
       ) : (
         <Swiper
@@ -43,7 +45,11 @@ export default function MovieCarousel() {
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          loop
+          loop={slidesCount > 1}
+          loopedSlides={slidesCount}
+          loopAdditionalSlides={slidesCount}
+          loopedSlidesLimit={false}
+          watchSlidesProgress
           spaceBetween={20}
           slidesPerView={3}
           grabCursor
