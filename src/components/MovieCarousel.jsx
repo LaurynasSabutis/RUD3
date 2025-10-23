@@ -9,7 +9,7 @@ export default function MovieCarousel() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    fetch("/data.json")
+    fetch("http://localhost:3000/movies")
       .then((res) => res.json())
       .then((data) => {
         const movies = Array.isArray(data) ? data : data.movies || [];
