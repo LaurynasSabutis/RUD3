@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "../main.css";
 
-export default function MovieCarousel() {
+export default function MovieCarousel({ searchQuery = "" }) {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
@@ -29,12 +29,24 @@ export default function MovieCarousel() {
     );
   };
 
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const visibleMovies =
+    normalizedQuery.length > 0
+      ? trendingMovies.filter((movie) =>
+          movie.title.toLowerCase().includes(normalizedQuery)
+        )
+      : trendingMovies;
+
   return (
     <div className="w-full mt-8 overflow-hidden">
       <h2 className="text-2xl font-semibold mb-6 text-white">Trending</h2>
 
       {trendingMovies.length === 0 ? (
         <p className="text-gray-400">Loading movies...</p>
+      ) : visibleMovies.length === 0 ? (
+        <p className="text-gray-400">
+          No trending titles match &ldquo;{searchQuery}&rdquo;.
+        </p>
       ) : (
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -45,18 +57,17 @@ export default function MovieCarousel() {
             pauseOnMouseEnter: true,
           }}
           loop={true}
-          spaceBetween={20}
-          slidesPerView={4}
+          spaceBetween={12}
+          slidesPerView="auto"
           grabCursor
           className="!w-full drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]"
           breakpoints={{
-            1280: { slidesPerView: 4 },
-            1024: { slidesPerView: 3 },
-            768: { slidesPerView: 2 },
-            0: { slidesPerView: 1 },
+            1280: { spaceBetween: 18 },
+            1024: { spaceBetween: 16 },
+            768: { spaceBetween: 14 },
           }}
         >
-          {trendingMovies.map((movie) => {
+          {visibleMovies.map((movie) => {
             const image =
               movie.thumbnail.trending?.large ||
               movie.thumbnail.regular?.large ||
@@ -64,7 +75,7 @@ export default function MovieCarousel() {
               movie.thumbnail.regular?.small;
 
             return (
-              <SwiperSlide key={movie.title} style={{ width: "350px" }}>
+              <SwiperSlide key={movie.title} className="!w-auto">
                 <div className="movie-slide">
                   {/* Poster */}
                   <img

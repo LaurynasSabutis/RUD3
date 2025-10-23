@@ -15,6 +15,7 @@ body{
 .root-body{
     margin-left: 100px;
     margin-top: 25px;
+    overflow-x: hidden;
 }
 .swiper {
   width: 100%;
@@ -55,8 +56,8 @@ body{
 
 .movie-slide {
   position: relative;
-  width: 350px;
-  height: 200px;
+  width: clamp(260px, 24vw, 340px);
+  aspect-ratio: 16 / 9;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);

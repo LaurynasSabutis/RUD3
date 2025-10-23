@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../pages/bookmarks/Bookmarks.css"; // reuse same grid styles for consistent layout
 
-const RecommendedGrid = () => {
-  const [recommendedMovies, setRecommendedMovies] = useState([]);
+const RecommendedGrid = ({ searchQuery = "" }) => {
+  const [allMovies, setAllMovies] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
       const res = await fetch("/data.json");
       const json = await res.json();
       const movies = Array.isArray(json) ? json : json.movies || [];
-      // only non-trending movies (the “recommended” ones)
-      const recommended = movies.filter((movie) => !movie.isTrending);
-      setRecommendedMovies(recommended);
+      setAllMovies(movies);
     };
     fetchMovies();
   }, []);
 
   const toggleBookmark = (title) => {
-    setRecommendedMovies((prev) =>
+    setAllMovies((prev) =>
       prev.map((movie) =>
         movie.title === title
           ? { ...movie, isBookmarked: !movie.isBookmarked }
@@ -26,13 +24,36 @@ const RecommendedGrid = () => {
     );
   };
 
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const visibleMovies = useMemo(() => {
+    if (normalizedQuery.length === 0) {
+      return allMovies.filter((movie) => !movie.isTrending);
+    }
+
+    return allMovies.filter((movie) =>
+      movie.title.toLowerCase().includes(normalizedQuery)
+    );
+  }, [allMovies, normalizedQuery]);
+
+  const titleText =
+    normalizedQuery.length === 0
+      ? "Recommended for you"
+      : `Found ${visibleMovies.length} result${
+          visibleMovies.length === 1 ? "" : "s"
+        } for "${searchQuery}"`;
+
   return (
     <>
-      <h1 style={{ marginBottom: "2rem" }}>Recommended for you</h1>
+      <h1 style={{ marginBottom: "2rem" }}>{titleText}</h1>
       <section>
         <div className="container-of-movies">
-          <div className="grid-cards">
-            {recommendedMovies.map((movie, i) => (
+          {visibleMovies.length === 0 ? (
+            <p className="text-gray-400" style={{ padding: "0 10px" }}>
+              No matches found. Try another search term.
+            </p>
+          ) : (
+            <div className="grid-cards">
+              {visibleMovies.map((movie, i) => (
               <div key={i} className="card">
                 {/* Thumbnail */}
                 <div className="image-container">
@@ -96,8 +117,9 @@ const RecommendedGrid = () => {
                 {/* Title */}
                 <h2 style={{ marginTop: "10px" }}>{movie.title}</h2>
               </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

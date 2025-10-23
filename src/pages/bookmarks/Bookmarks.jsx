@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Bookmarks.css";
 
+
 export default function Bookmarks() {
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");

@@ -30,7 +30,7 @@ export default function Movies() {
   const filtered = movies.filter(m => m.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
-    <div className="movies-container">
+    <div >
       <h1>All Movies</h1>
       <div className="search-bar">
         <img src="/assets/icon-search.svg" alt="search" className="search-icon" />
@@ -42,6 +42,8 @@ export default function Movies() {
           className="search-input"
         />
       </div>
+
+      
 
       <div className="movies-grid">
         {filtered.length ? (

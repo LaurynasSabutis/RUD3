@@ -1,0 +1,71 @@
+
+
+.container-of-movies{
+    width: 100%;
+    height: 100%;
+};
+
+
+
+p{
+    margin: 0;
+}
+
+.grid-cards{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+  row-gap: 25px;
+  column-gap: 15px;
+}
+
+.divider{
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.thumbnail {
+  border-radius: 15px;
+  width: 100%;
+  display: block;
+}
+
+.bookmark-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5); /* optional for contrast */
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .grid-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-cards{
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,27 +1,39 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Login/Login.css";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  // Endpoint that will store new users.
+  const USERS_API_URL =
+    import.meta.env.VITE_USERS_API_URL ?? "/api/users";
+
+  // Form fields we show on the screen.
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
 
+  // Simple validation messages for every input.
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
 
+  // Status flags for network request.
+  const [serverError, setServerError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
+    setServerError("");
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
 
     const nextErrors = {
@@ -42,8 +54,40 @@ const Signup = () => {
       return;
     }
 
-    // TODO: replace with real signup flow
-    console.log("Signing up with:", formValues);
+    const email = formValues.email.trim();
+    const password = formValues.password.trim();
+
+    setIsSubmitting(true);
+    setServerError("");
+
+    try {
+      // Send the new account to the backend.
+      const createUserResponse = await fetch(USERS_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!createUserResponse.ok) {
+        throw new Error(`Failed to create user (${createUserResponse.status})`);
+      }
+
+      // Reset the form so it looks fresh.
+      setFormValues({
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+
+      navigate("/login");
+    } catch (err) {
+      console.error("Signup error:", err);
+      setServerError("Could not create your account. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -112,10 +156,20 @@ const Signup = () => {
             )}
           </div>
 
-          <button type="submit" className="login-submit">
-            Create an account
+          <button
+            type="submit"
+            className="login-submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Creating account..." : "Create an account"}
           </button>
         </form>
+
+        {serverError && (
+          <p className="login-error" style={{ textAlign: "center" }}>
+            {serverError}
+          </p>
+        )}
 
         <p className="login-footer">
           Already have an account?{" "}
