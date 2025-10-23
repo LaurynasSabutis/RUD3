@@ -24,3 +24,8 @@ input:focus,
 input:active {
   border-bottom: 2px solid white; /* Active/Focus effect */
 }
+
+button {
+  all: unset;
+  cursor: pointer;
+}
