@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import SearchInputForBookmarkedPage from "../../components/SearchInputForBookmarkedPage";
 import "./Bookmarks.css";
+
 
 const Bookmarks = () => {
   const [bookmarkedItems, setBookmarkedItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -72,7 +73,7 @@ const Bookmarks = () => {
         <div className="divider"></div>
         <p>{listing.rating}</p>
       </div>
-      <h2 className="card-title">{listing.title}</h2>
+      <h2 >{listing.title}</h2>
     </div>
   );
 
@@ -83,18 +84,36 @@ const Bookmarks = () => {
   const bookmarkedSeries = bookmarkedItems.filter(
     (item) => item.isBookmarked && item.category === "TV Series"
   );
+ const filteredEverything = bookmarkedItems.filter((bookmark) =>
+    bookmark.isBookmarked && bookmark.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
-      <SearchInputForBookmarkedPage />
+     
       <h1 style={{ marginBottom: "2rem" }}>Bookmarked movies</h1>
-      <section>
+      <div className="search-bar">
+        <img src="/assets/icon-search.svg" alt="search" className="search-icon" />
+        <input
+          type="text"
+          placeholder="Search movies..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
+        />
+      </div>
+      
+      {searchQuery === "" ? (
+        <span>
+          <section>
         <div className="container-of-movies">
           <div className="grid-cards">
             {bookmarkedMovies.map(renderCard)}
           </div>
         </div>
       </section>
+
+
 
       <h1>Bookmarked TV series</h1>
       <section>
@@ -104,6 +123,32 @@ const Bookmarks = () => {
           </div>
         </div>
       </section>
+        </span>
+      ) : (
+        <section>
+        <div className="container-of-movies">
+          <div className="grid-cards">
+        {filteredEverything.map(renderCard)}
+          </div>
+        </div>
+      </section>
+      )}
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
     </>
   );
 };

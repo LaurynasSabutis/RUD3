@@ -31,7 +31,7 @@ export default function Movies() {
   );
 
   return (
-    <div className="movies-container">
+    <div >
       <h1>All Movies</h1>
 
       <div className="search-bar">
@@ -44,6 +44,8 @@ export default function Movies() {
           className="search-input"
         />
       </div>
+
+      
 
       {movies.length === 0 ? (
         <p className="loading">Loading movies...</p>
@@ -62,7 +64,7 @@ export default function Movies() {
               return (
                 <div key={movie.title} className="movie-card">
                   <div className="image-wrapper">
-                    <img src={image} alt={movie.title} className="movie-image" />
+                    <img src={image} alt={movie.title}  className="movie-image thumbnail" />
                     <button
                       type="button"
                       className="bookmark-button"
