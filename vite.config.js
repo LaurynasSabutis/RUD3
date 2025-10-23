@@ -38,6 +38,7 @@ const writeUsers = async (data, users) => {
   )
 }
 
+// Development-time middleware that emulates a backend for signup/login flows.
 const usersApiPlugin = () => ({
   name: 'users-api-middleware',
   apply: 'serve',
@@ -114,6 +115,7 @@ const usersApiPlugin = () => ({
           const data = await readDataFile()
           const nextUsers = [...data.users, { email, password }]
 
+          // Persist the new credentials so login can read them later.
           await writeUsers(data, nextUsers)
 
           sendJson(201, { email })
