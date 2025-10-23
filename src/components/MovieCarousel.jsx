@@ -5,11 +5,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "../main.css";
 
-export default function MovieCarousel() {
+export default function MovieCarousel({ searchQuery = "" }) {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/movies")
+    fetch("/data.json")
       .then((res) => res.json())
       .then((data) => {
         const movies = Array.isArray(data) ? data : data.movies || [];
@@ -29,12 +29,24 @@ export default function MovieCarousel() {
     );
   };
 
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const visibleMovies =
+    normalizedQuery.length > 0
+      ? trendingMovies.filter((movie) =>
+          movie.title.toLowerCase().includes(normalizedQuery)
+        )
+      : trendingMovies;
+
   return (
     <div className="w-full mt-8 overflow-hidden">
       <h2 className="text-2xl font-semibold mb-6 text-white">Trending</h2>
 
       {trendingMovies.length === 0 ? (
         <p className="text-gray-400">Loading movies...</p>
+      ) : visibleMovies.length === 0 ? (
+        <p className="text-gray-400">
+          No trending titles match &ldquo;{searchQuery}&rdquo;.
+        </p>
       ) : (
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -55,7 +67,7 @@ export default function MovieCarousel() {
             768: { spaceBetween: 14 },
           }}
         >
-          {trendingMovies.map((movie) => {
+          {visibleMovies.map((movie) => {
             const image =
               movie.thumbnail.trending?.large ||
               movie.thumbnail.regular?.large ||
