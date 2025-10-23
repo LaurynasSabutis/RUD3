@@ -53,3 +53,11 @@ Bookmarked Shows
 This page should display all bookmarked shows from both categories
 Any search input should search through all bookmarked shows
 Have fun building! 🚀
+
+
+
+
+### DEMO vartotojai
+
+demo@example.com
+password123
