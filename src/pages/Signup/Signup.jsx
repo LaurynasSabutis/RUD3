@@ -4,21 +4,25 @@ import "../Login/Login.css";
 
 const Signup = () => {
   const navigate = useNavigate();
+  // Endpoint that will store new users.
   const USERS_API_URL =
     import.meta.env.VITE_USERS_API_URL ?? "/api/users";
 
+  // Form fields we show on the screen.
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
 
+  // Simple validation messages for every input.
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
 
+  // Status flags for network request.
   const [serverError, setServerError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -57,6 +61,7 @@ const Signup = () => {
     setServerError("");
 
     try {
+      // Send the new account to the backend.
       const createUserResponse = await fetch(USERS_API_URL, {
         method: "POST",
         headers: {
@@ -69,6 +74,7 @@ const Signup = () => {
         throw new Error(`Failed to create user (${createUserResponse.status})`);
       }
 
+      // Reset the form so it looks fresh.
       setFormValues({
         email: "",
         password: "",
