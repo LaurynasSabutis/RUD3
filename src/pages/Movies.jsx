@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import Movie from "../components/movies/Movies";
 
-const Movies = () => {
+const MoviesPage = () => {
   return (
-    <div className="bg-[#10141E] text-white min-h-screen p-6"> <Movie /> </div>
-  )
+    <div className="bg-[#10141E] text-white min-h-screen w-full"> <Movie /> </div>
+  );
 }
 
-export default Movies
+export default MoviesPage;
