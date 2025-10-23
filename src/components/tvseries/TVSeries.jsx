@@ -7,92 +7,67 @@ export default function TVSeries() {
 
   useEffect(() => {
     fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const seriesData = Array.isArray(data) ? data : data.movies || [];
-        const onlySeries = seriesData.filter((item) => item.category === "TV Series");
-        setSeries(onlySeries);
-      })
-      .catch((err) => console.error("Error loading TV series:", err));
+      .then(res => res.json())
+      .then(data => {
+        const allSeries = Array.isArray(data) ? data : data.movies || [];
+        const saved = JSON.parse(localStorage.getItem("bookmarkedItems") || "[]");
+        setSeries(
+          allSeries
+            .filter(s => s.category === "TV Series")
+            .map(s => ({ ...s, isBookmarked: saved.some(b => b.title === s.title) }))
+        );
+      });
   }, []);
 
-  const toggleBookmark = (title) => {
-    setSeries((prev) =>
-      prev.map((s) =>
-        s.title === title ? { ...s, isBookmarked: !s.isBookmarked } : s
-      )
+  const toggleBookmark = title => {
+    const updated = series.map(s =>
+      s.title === title ? { ...s, isBookmarked: !s.isBookmarked } : s
     );
+    setSeries(updated);
+    localStorage.setItem("bookmarkedItems", JSON.stringify(updated.filter(s => s.isBookmarked)));
   };
 
-  const filteredSeries = series.filter((s) =>
-    s.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filtered = series.filter(s => s.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div className="movies-container">
       <h1>All TV Series</h1>
-
-      {/* Search bar */}
       <div className="search-bar">
         <img src="/assets/icon-search.svg" alt="search" className="search-icon" />
         <input
           type="text"
           placeholder="Search TV series..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={e => setSearchQuery(e.target.value)}
           className="search-input"
         />
       </div>
 
-      {series.length === 0 ? (
-        <p className="loading">Loading TV series...</p>
-      ) : (
-        <div className="movies-grid">
-          {filteredSeries.length === 0 ? (
-            <p className="no-results">No TV series found.</p>
-          ) : (
-            filteredSeries.map((s) => {
-              const image =
-                s.thumbnail?.trending?.large ||
-                s.thumbnail?.regular?.large ||
-                s.thumbnail?.regular?.medium ||
-                "/assets/default-movie.jpg";
-
-              return (
-                <div key={s.title} className="movie-card">
-                  <div className="image-wrapper">
-                    <img src={image} alt={s.title} className="movie-image" />
-                    <button
-                      type="button"
-                      className="bookmark-button"
-                      onClick={() => toggleBookmark(s.title)}
-                      aria-label={`${
-                        s.isBookmarked ? "Remove from" : "Add to"
-                      } bookmarks`}
-                    >
-                      <img
-                        src={
-                          s.isBookmarked
-                            ? "/assets/icon-bookmark-full.svg"
-                            : "/assets/icon-bookmark-empty.svg"
-                        }
-                        alt="bookmark"
-                      />
-                    </button>
-                  </div>
-
-                  <div className="movie-info">
-                    <div className="movie-meta">
-                      {s.year} • {s.category} • {s.rating}
-                    </div>
-                    <div className="movie-title">{s.title}</div>
-                  </div>
+      <div className="movies-grid">
+        {filtered.length ? (
+          filtered.map(s => {
+            const img = s.thumbnail?.trending?.large || s.thumbnail?.regular?.large || s.thumbnail?.regular?.medium || "/assets/default-movie.jpg";
+            return (
+              <div key={s.title} className="movie-card">
+                <div className="image-wrapper">
+                  <img src={img} alt={s.title} className="movie-image" />
+                  <button
+                    type="button"
+                    className="bookmark-button"
+                    onClick={() => toggleBookmark(s.title)}
+                  >
+                    <img src={s.isBookmarked ? "/assets/icon-bookmark-full.svg" : "/assets/icon-bookmark-empty.svg"} alt="bookmark" />
+                  </button>
                 </div>
-              );
-            })
-          )}
-        </div>
-      )}
+                <div className="movie-info">
+                  <div className="movie-meta">{s.year} • {s.category} • {s.rating}</div>
+                  <div className="movie-title">{s.title}</div>
+                </div>
+              </div>
+            );
+          })
+        ) : <p className="no-results">No TV series found.</p>}
+      </div>
     </div>
   );
 }
