@@ -32,7 +32,8 @@ export default function Movies() {
   return (
     <div >
       <h1>All Movies</h1>
-      <div className="search-bar">
+      <div className="input-container">
+<div className="search-bar">
         <img src="/assets/icon-search.svg" alt="search" className="search-icon" />
         <input
           type="text"
@@ -42,6 +43,8 @@ export default function Movies() {
           className="search-input"
         />
       </div>
+      </div>
+      
 
       
 

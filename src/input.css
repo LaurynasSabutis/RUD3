@@ -13,6 +13,13 @@ input {
   font-size: 18px; /* Larger text */
 }
 
+.input-container {
+  width: 100%;
+  display: flex;
+  gap: 0.1rem;
+  align-items: center;
+}
+
 button {
   all: unset;
   cursor: pointer;

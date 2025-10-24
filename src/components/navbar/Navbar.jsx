@@ -33,7 +33,8 @@ const Navbar = () => {
             </ul>
           </nav>
           <div className='nav-profile' >
-          <img width={50}  src='/assets/image-avatar.png'></img>
+            <a href="/signup">          <img width={50}  src='/assets/image-avatar.png'></img>
+</a>
         </div>   
      
         </div>
