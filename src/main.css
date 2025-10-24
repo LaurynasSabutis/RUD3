@@ -45,9 +45,6 @@ body{
   padding: 0;
 }
 
-.bookmark-button:hover {
-  background: rgba(255, 255, 255, 0.85);
-}
 
 .bookmark-button img {
   width: 18px;
