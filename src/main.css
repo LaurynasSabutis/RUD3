@@ -11,6 +11,7 @@ body{
     background-color: #10141E;
     color: #FFFFFF;
     font-family: "Google Sans", "Helvetica Neue", Arial, sans-serif;
+    font-weight: "bolder";
 }
 .root-body{
     margin-left: 100px;
@@ -44,9 +45,6 @@ body{
   padding: 0;
 }
 
-.bookmark-button:hover {
-  background: rgba(255, 255, 255, 0.85);
-}
 
 .bookmark-button img {
   width: 18px;

@@ -16,10 +16,12 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    background-color: rgba(50, 50, 50, 0.5);
     padding: 6px 10px;
     border-radius: 8px;
-    max-width: 400px;
+    /* background-color: aqua; */
+    width: 100%;
+  display: flex;
+  gap: 0.1rem;
 }
 
 .search-icon {
@@ -36,7 +38,28 @@
     color: #fff;
     font-size: 1rem;
     outline: none;
+    appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 12px 16px; /* Increased padding for a larger clickable area */
+  margin: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  font-size: 18px; /* Larger text */
+  
 }
+
+.input-container {
+  width: 100%;
+  display: flex;
+  gap: 0.1rem;
+  align-items: center;
+}
+
 
 .search-input::placeholder {
     color: #ccc;
